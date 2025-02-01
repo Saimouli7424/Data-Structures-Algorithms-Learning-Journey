@@ -1,0 +1,84 @@
+"Amortized time complexity" calculates the average time per operation over a sequence of operations, balancing out rare, costly operations with frequent, quick ones. It shows the realistic average cost of operations, where occasional long operations have minimal impact when spread across many fast ones.
+
+So, the meaning for it's:
+even there was a long time taken operations but happens rarely and also there were operation which takes very less time daily we spread the longtime operation costs to smaller ones and gets average time complexity resulting overall performance more accurately.
+------------------------------------------------------------------------------------------
+STL:-
+--------
+unordered_set in C++ STL
+Vector in C++ STL
+Set in C++ STL
+unordered_multiset in C++ STL
+multiset in C++ STL
+unordered_map in C++ STL
+map in C++ STL
+unordered_multimap in C++ STL
+queue in C++ STL
+stack in C++ STL
+deque in C++ STL
+priority_queue in C++ STL
+multimap in C++ STL
+list in C++ STL
+next_permutation in STL
+__builtin_popcount() in STL
+sort() in C++ STL
+min_element() in C++ STL
+max_element() in C++ STL
+
+
+
+-----------------------------------------------------------------------------------------
+There are two types of space complexity:-
+Auxilary space(we used)-->usually refers
+Total space
+
+Auxiliary Space vs. Total Space:
+-------------------------------
+Space complexity usually refers to auxiliary space, which is the extra memory the algorithm uses to process the input (e.g., variables, data structures, recursion stack).
+
+If we consider total space (input + auxiliary), the size of the array n would be included.
+
+------------------------------------------------------------------------------------------
+
+Time-Space trade off(Compressed/Uncompressed):-
+----------------------
+The time-space trade-off is a concept in computer science. It basically says that sometimes we can make a program run faster if we use more memory(space), or we can use less memory if we don't mind the program taking a bit longer(time).
+
+
+loopunrolling:-
+---------------
+It's like instead of checking the condition, increments and jump back to start by this it takes large time so we usually write manually for an example there is an sum of array code for length 'n'using for loop 
+int sumArray(const int* array, int length) {
+    int sum = 0;
+    for (int i = 0; i < length; i++) {
+        sum += array[i];
+    }
+    return sum;
+}
+
+By Loop unrolling:-
+int sumArray(const int* array, int length) {
+    int sum = 0;
+    int i = 0;
+
+    // Unroll the loop in chunks of 4
+    for (; i < length - 3; i += 4) {
+        sum += array[i] + array[i + 1] + array[i + 2] + array[i + 3];
+    }
+
+    // Handle any remaining elements
+    for (; i < length; i++) {
+        sum += array[i];
+    }
+
+    return sum;
+}
+ we manually writes the body of code no.of times required instead of checking in the for loop by this the time computation reduces.
+------------------------------------------------------------------------------------------
+Time complexities:-
+constant time- O(1)          ex:- time remains fixed irrespective of input size
+logarithmic time- O(long n)  ex:- binary search
+linear time -O(n)            ex:-linear search
+quasilinear time- O(n log n) ex:- merge sort, heap sort, quick sort
+quadratic time- O(n^2)       ex:- Bubble sort, insertion sort 
+exponential time:- O(2^n)    ex:- in recursion tower of hanoi(TOH)
