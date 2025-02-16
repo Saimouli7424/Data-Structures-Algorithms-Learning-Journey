@@ -32,7 +32,7 @@ void MS(vector<int> &arr,int low,int mid,int high)
         
         for(int i = low;i<=high;i++)
         {
-            arr[i] = temp[i-low];
+            arr[i] = temp[i-low];//it's for because temp will be reinitialized so it starts from 0 which can acquire by difference of low
         }
     }
     
