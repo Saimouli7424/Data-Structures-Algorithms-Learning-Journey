@@ -14,7 +14,6 @@ int main(){
             counted.insert(first);
         }
     }
-
     for(auto it: occurrences){
         cout<<it.first<<"occurs "<<it.second<<"times\n";
     }
