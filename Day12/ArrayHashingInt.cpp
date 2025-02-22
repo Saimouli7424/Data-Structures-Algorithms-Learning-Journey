@@ -1,4 +1,4 @@
-//prints the occurence of a number
+//prints the occurrence of a number using ArrayHashing
 #include <iostream>
 using namespace std;
 int main(){

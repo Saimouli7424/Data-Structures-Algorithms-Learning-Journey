@@ -1,4 +1,4 @@
-//bruteforce approach for character hashing
+//BruteForce approach for character ArrayHashing
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
