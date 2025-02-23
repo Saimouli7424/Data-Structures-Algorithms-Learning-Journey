@@ -14,6 +14,13 @@ int main(){
         mpp[arr[i]]++;
     }
 
+    //for printing the map values
+    // for(auto i: mpp)
+    // {
+    //     cout<<"For the number: "<<i.first<<" Occurred is: "<<i.second<<endl;
+    // }
+
+
     // map<int, int> mpp;
     // for(int i=0;i<n;i++)
     // {
