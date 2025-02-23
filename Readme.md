@@ -8,7 +8,7 @@ This repository contains my daily coding practice, concepts, and problem-solving
 
 ### 🔥 What You'll Find Here
 
-- **Daily coding solutions** to problems from various platforms.
+- **Daily coding solutions** to problems.
 - **Concept explanations** with examples.
 - **Optimized approaches** to improve problem-solving skills.
 - **Code snippets & algorithms** for quick reference.
