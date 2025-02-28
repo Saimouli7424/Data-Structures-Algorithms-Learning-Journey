@@ -43,6 +43,8 @@ int main() {
 
 
 /*
+The Sieve of Eratosthenes is already efficient with O(N log log N) complexity
+
 Explaination:-
 Let's go step by step for n = 11 using the Sieve of Eratosthenes.
 
