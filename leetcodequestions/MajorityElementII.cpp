@@ -1,48 +1,32 @@
-//leetcode 229
 #include<iostream>
 #include<vector>
+#include<unordered_map>
 using namespace std;
 
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        int num1 = -1, num2 = -1, count1 = 0, count2 = 0;
-        int n = nums.size();
+        unordered_map<int, int> hash;
+        vector<int> data;
 
-        // Step 1: Find potential candidates
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == num1) {
-                count1++;
-            }
-            else if (nums[i] == num2) {
-                count2++;
-            }
-            else if (count1 == 0) {
-                num1 = nums[i];
-                count1 = 1;
-            }
-            else if (count2 == 0) {
-                num2 = nums[i];
-                count2 = 1;
-            }
-            else {
-                count1--;
-                count2--;
+        if(nums.size() == 1) {
+            data.emplace_back(nums[0]);
+            return data;
+        }
+
+        // Count frequency of each element
+        for(auto i : nums) {
+            hash[i]++;
+        }
+
+        // Find elements with frequency greater than n/3
+        for(auto it : hash) {
+            if(it.second > (nums.size() / 3)) {
+                data.emplace_back(it.first);
             }
         }
 
-        // Step 2: Verify the candidates
-        count1 = 0, count2 = 0;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == num1) count1++;
-            else if (nums[i] == num2) count2++;
-        }
-
-        vector<int> result;
-        if (count1 > n / 3) result.emplace_back(num1);
-        if (count2 > n / 3) result.emplace_back(num2);
-
-        return result;
+        return data;
     }
 };
 
@@ -52,7 +36,7 @@ int main() {
     vector<int> result = obj.majorityElement(nums);
 
     cout << "Majority Elements: ";
-    for (auto i : result) {
+    for(auto i : result) {
         cout << i << " ";
     }
     return 0;
