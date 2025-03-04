@@ -1,50 +1,47 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
 
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
+    while (i < j) {
+        while (arr[i] <= pivot && i < high) {
             i++;
-            swap(arr[i], arr[j]);
         }
+
+        while (arr[j] > pivot && j > low) {
+            j--;
+        }
+
+        if (i < j) swap(arr[i], arr[j]);
     }
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
+    swap(arr[low], arr[j]);
+    return j;
 }
 
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
+void quicksort(vector<int>& arr, int low, int high) {
+    if (low >= high) return; // Base case
 
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    int pivotIndex = partition(arr, low, high);
+    
+    quicksort(arr, low, pivotIndex - 1);
+    quicksort(arr, pivotIndex + 1, high);
 }
 
 int main() {
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++) {
-        cin>>arr[i];
-    }
-    
-    cout << "Unsorted array: ";
-    printArray(arr, n);
-    
-    quickSort(arr, 0, n - 1);
-    
+    vector<int> arr = {3, 7, 1, 9, 2, 5, 8};
+
+    int n = arr.size();
+    quicksort(arr, 0, n - 1);
+
     cout << "Sorted array: ";
-    printArray(arr, n);
-    
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+
     return 0;
 }
