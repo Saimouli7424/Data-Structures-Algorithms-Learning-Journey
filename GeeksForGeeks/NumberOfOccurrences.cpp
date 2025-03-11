@@ -1,4 +1,4 @@
-//Number of occurence
+//Number of occurence using binary search
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
