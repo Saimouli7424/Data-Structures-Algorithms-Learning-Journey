@@ -1,28 +1,9 @@
-//Maximum Value of an Ordered Triplet I(Easy)
+//Maximum Value of an Ordered Triplet II(Medium)
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
-    
-    //time complexity O(N^3) and space complexity O(1)
-    long long maximumTripletValue(vector<int>& nums) {
-        if(nums.size() < 3) return 0;
-        long long val = 0;
-        for(int i = 0; i < nums.size() - 2; i++) {
-            if(nums[i] < nums[i + 1]) continue;
-            for(int j = i + 1; j < nums.size() - 1; j++) {
-                if(nums[j] >= nums[i]) continue;
-                for(int k = j + 1; k < nums.size(); k++) {  // FIXED condition
-                    long long temp = (long long)(nums[i] - nums[j]) * nums[k];  // Avoid overflow
-                    val = max(temp, val);
-                }
-            }
-        }
-        return val;
-    }
-
-    /*
     //time complexity O(N) and space complexity O(1)
     long long maximumTripletValue(vector<int>& nums) {
         int n = nums.size();
@@ -39,7 +20,7 @@ public:
         }
 
         return maxValue;
-    }*/
+    }
 };
 
 int main() {
@@ -59,4 +40,3 @@ int main() {
 
     return 0;
 }
-
