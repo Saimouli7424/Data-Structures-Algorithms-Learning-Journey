@@ -1,0 +1,186 @@
+explaination:-
+
+🧠 What left[i] and right[i] actually represent:
+left[i] → how many subarrays ending at i in which arr[i] is the minimum
+
+right[i] → how many subarrays starting at i in which arr[i] is the minimum
+
+✅ Final Understanding:
+You got the core idea correct:
+
+left[i] → how many elements on the left side (including i) make arr[i] the min
+
+right[i] → how many elements on the right side (including i) make arr[i] the min
+
+Together → they give the count of subarrays where arr[i] is the minimum, and we multiply that with arr[i] for contribution.
+
+
+
+for the example {3,1,2,4}:-
+--------------------------
+left={1,2,1,1}
+right={1,3,2,1}
+
+🧠 What does left[i] mean?
+-----------------------------------------
+👉 left[i] tells how many consecutive elements to the left of arr[i] (including itself) are strictly greater than or equal to arr[i].
+
+We count until we find a smaller element (or reach the beginning).
+
+💡 Input:
+arr = [3, 1, 2, 4]
+Let’s go index-by-index:
+
+✅ i = 0 → arr[0] = 3
+No elements to the left.
+
+So only itself counts.
+
+left[0] = 1
+
+✅ i = 1 → arr[1] = 1
+We look left from index 1:
+
+arr[0] = 3 → 3 > 1 ✅
+
+No more elements left.
+
+Count = 1 (3) + 1 (self) →
+left[1] = 2
+
+✅ i = 2 → arr[2] = 2
+Look left from index 2:
+
+arr[1] = 1 → 1 < 2 ❌ → stop
+Only itself counts
+left[2] = 1
+
+✅ i = 3 → arr[3] = 4
+Look left from index 3:
+
+arr[2] = 2 → 2 < 4 ❌ → stop
+Only itself counts
+left[3] = 1
+
+✅ Final left array:
+left = [1, 2, 1, 1]
+👀 What this means:
+For 3 → only itself is min → 1 subarray
+
+For 1 → in subarrays ending at 1 and including 3, 1 is smallest → 2 subarrays
+
+For 2 → only itself
+
+For 4 → only itself
+
+
+🧠 What does right[i] mean?
+-----------------------------------------
+👉 right[i] tells how many consecutive elements to the right of arr[i] (including itself) are strictly greater than or equal to arr[i].
+
+We count until we find a smaller element (or reach the end).
+
+Given:
+arr = [3, 1, 2, 4]
+We compute right[] step by step:
+
+✅ i = 0 → arr[0] = 3
+Look right:
+
+arr[1] = 1 → 1 < 3 ❌ → stop
+Only itself
+➡️ right[0] = 1
+
+✅ i = 1 → arr[1] = 1
+Look right:
+
+arr[2] = 2 → 2 > 1 ✅
+
+arr[3] = 4 → 4 > 1 ✅
+
+no more → stop
+
+So: (arr[2], arr[3]) + self = 3 elements
+➡️ right[1] = 3
+
+✅ i = 2 → arr[2] = 2
+Look right:
+
+arr[3] = 4 → 4 > 2 ✅
+
+no more → stop
+
+Self + 1 = 2
+➡️ right[2] = 2
+
+✅ i = 3 → arr[3] = 4
+No elements on the right → only itself
+➡️ right[3] = 1
+
+✅ Final right array:
+right = [1, 3, 2, 1]
+👀 What this means:
+i	arr[i]	right[i]	Explanation
+0	3	1	Only itself, next is 1 which is smaller ❌
+1	1	3	1 is smaller than 2, 4 → all included
+2	2	2	2 and 4 only, stop at end
+3	4	1	Only itself, no right element
+Let me know if you want to see the full formula applied now using left[i] * right[i] * arr[i] to get the final answer step-by-step!
+
+
+
+
+
+
+
+You said:
+in the left side for 2 is smaller than itself 2 and 3 but why you considered only 1 time it has to come 2times or else you are considering in the sense of subarrays
+
+
+ChatGPT said:
+Awesome question! 😎 You're thinking deeply now — let's clarify this carefully and clearly explain why left[2] = 1 for arr = [3, 1, 2, 4].
+
+🎯 First, a recap:
+We are calculating left[i] to find how many subarrays ending at i in which arr[i] is the minimum element.
+
+🔍 At i = 2, arr[2] = 2:
+We look left and ask:
+
+"How far back can we go where all elements are greater than or equal to 2?"
+
+Let’s see:
+
+arr[1] = 1 → ❌ 1 < 2 → stop here
+
+So:
+
+Only arr[2] = 2 itself is included
+
+We can't go further because a smaller element (1) is blocking us
+
+🧠 So, why is left[2] = 1?
+Because:
+
+The subarrays ending at index 2 are:
+
+[2]
+
+[1, 2]
+
+[3, 1, 2]
+
+Now ask: In which of these is 2 the minimum?
+
+✅ Only in [2], it's the minimum
+❌ In [1, 2] and [3, 1, 2], the minimum is 1
+
+Hence, only 1 subarray exists where 2 is the minimum →
+👉 left[2] = 1
+
+🔄 We're not counting duplicates of the number itself — we’re counting how many elements to the left (including itself) are ≥ arr[i] before we hit a smaller one.
+This ensures we only count valid ranges where arr[i] is the minimum.
+
+Let me know if you'd like to break this down visually with stack operations too!
+
+
+
