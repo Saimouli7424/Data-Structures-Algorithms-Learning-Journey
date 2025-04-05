@@ -7,7 +7,6 @@ using namespace std;
 
 class Solution {
 public:
-    /*
     //time complexity: O(2^n) where n is the number of elements in nums
     int subsetXORSum(vector<int>& nums)
     {
@@ -27,18 +26,6 @@ public:
 
         // Exclude nums[index] from current subset
         backtracking(nums, index + 1, currentXOR, total);
-    }*/
-
-    //time complexity: O(n) where n is the number of elements in nums
-    //space complexity: O(1)
-    int subsetXORSum(vector<int>& nums)
-    {
-        int total = 0;
-        int n = nums.size();
-        for (int i = 0; i < n; ++i) {
-            total |= nums[i];
-        }
-        return total * (1 << (n - 1)); // Each element contributes to half of the subsets
     }
 };
 
