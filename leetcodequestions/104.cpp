@@ -19,7 +19,13 @@ class Solution {
 public:
     int maxDepth(TreeNode* root) {
         if (root == nullptr) return 0;
+        /*
+        //using dfs
+        int leftDepth = maxDepth(root->left);
+        int rightDepth = maxDepth(root->right);
 
+        return 1 + max(leftDepth, rightDepth);
+        */
         int count = 0;
         queue<TreeNode*> q;
         q.push(root);
