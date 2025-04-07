@@ -17,7 +17,7 @@ public:
             char sc = s[i], tc = t[i];
 
             if((s_to_t.count(sc) && s_to_t[sc] != tc) ||
-               (t_to_s.count(tc) && t_to_s[tc] != sc)) {
+            (t_to_s.count(tc) && t_to_s[tc] != sc)) {
                 return false;
             }
 
