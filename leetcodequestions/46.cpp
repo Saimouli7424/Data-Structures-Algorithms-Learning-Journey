@@ -1,0 +1,50 @@
+//Permutations(Medium)
+//using recursion and backtracking
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums)
+    {
+        vector<vector<int>> result;
+        permutation(nums, result, 0);
+        return result;
+    }
+
+    void permutation(vector<int>& nums, vector<vector<int>>& results, int index)
+    {
+        if (index == nums.size())
+        {
+            results.emplace_back(nums);
+            return;
+        }
+
+        for (int i = index; i < nums.size(); i++)
+        {
+            swap(nums[index], nums[i]);
+            permutation(nums, results, index + 1);
+            swap(nums[index], nums[i]); // backtrack
+        }
+    }
+};
+
+int main() {
+    vector<int> nums = {1, 2, 3};
+    Solution sol;
+    vector<vector<int>> result = sol.permute(nums);
+
+    cout << "Permutations:\n";
+    for (const auto& perm : result) {
+        for (int num : perm) {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+// Time Complexity: O(n! * n) where n is the size of the input array
