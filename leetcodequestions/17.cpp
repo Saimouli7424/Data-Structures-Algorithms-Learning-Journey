@@ -49,8 +49,8 @@ class Solution {
     
             for(char letter:mp[ch])
             {
-                //temp.push_back(letter); //backtrack step
-                recursion(index+1,digits,result,temp+letter);
+                //temp.push_back(letter) or temp+=letter ; //backtrack step
+                recursion(index+1,digits,result,temp+letter); //temp //backtrack step
                 // temp.pop_back();  // backtrack step
             }
         }
