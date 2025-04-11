@@ -11,9 +11,11 @@ public:
         int mod = 1e9 + 7;
         long long ans = 1;
 
-        for (int i = 1; i <= n; i++) {
-            ans = (ans * i) % mod;             // Ways to arrange pickups
-            ans = (ans * (2 * i - 1)) % mod;    // Ways to arrange deliveries after pickups
+        for(int i=1;i<=n;i++)
+        {
+            ans = (ans * (i + i-1)* i)%mod;
+            //ans will be the total no.of combinations of previous to add
+            //(i + i-1)*i gives the no.of ways to arrange the d for all the combinations of pickup added
         }
 
         return ans;
