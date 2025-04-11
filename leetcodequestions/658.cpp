@@ -12,12 +12,16 @@ public:
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (x - arr[mid] > arr[mid + k] - x)
+            //it will check the present mid-x element to the next k element
+            //if the mid-x is greater than the next k element-x then it will move to the right side of the array
+            //to find the nearest least element to x in the array
                 left = mid + 1;
             else
                 right = mid;
         }
         
         return vector<int>(arr.begin() + left, arr.begin() + left + k);
+        //it will return nearest least elements to x in the array
     }
 };
 
