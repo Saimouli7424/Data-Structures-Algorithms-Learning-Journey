@@ -1,6 +1,6 @@
 //Boyer-Moore Majority voting algorithm
-//it assumpts always an element has a frequency greater than n/2 times of array length
-
+//it assumes always an element has a frequency greater than >n/2 times of array length
+//the greater element is always k-1 in n/k
 
 #include <iostream>
 #include <vector>
