@@ -6,6 +6,8 @@ using namespace std;
 
 class Solution {
 public:
+    //time complexity is O(n) as we are traversing the string only once
+    //space complexity is O(1) as we are using only 26 characters
     int lengthOfLongestSubstring(string s) {
         set<char> temp;
         int maxelem = 0;
@@ -22,6 +24,32 @@ public:
             }
         }
         return maxelem;
+
+        /*
+        //optimal code written by me using map
+        //using map to store the last index of the character
+        //space complexity is O(1) as we are using only 26 characters
+        //time complexity is O(n) as we are traversing the string only once
+        int lengthOfLongestSubstring(string s) 
+        {
+            int n = s.length();
+            unordered_map<char,int>mp;
+            int j=0;
+            int maxcount=0;
+
+            for(int i=0;i<s.length();i++)
+            {
+                if(mp.count(s[i]) && mp[s[i]] >= j)
+                {
+                    j = mp[s[i]] + 1;
+                }
+                mp[s[i]]=i;
+                maxcount=max(maxcount,(i-j)+1);
+            }
+            
+            return maxcount;
+        }
+        */
     }
 };
 

@@ -64,3 +64,29 @@ int main() {
 
     return 0;
 }
+
+
+//using prefixsum
+/*
+int numberOfSubarrays(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        freq[0] = 1;
+
+        int count = 0;
+        int odd = 0;
+
+        for (int num : nums) {
+            if (num % 2 != 0) odd++;
+
+            // Check how many previous prefixes have (odd - k) count
+            if (freq.find(odd - k) != freq.end()) {
+                count += freq[odd - k];
+            }
+
+            // Store current odd count
+            freq[odd]++;
+        }
+
+        return count;
+    }
+*/
