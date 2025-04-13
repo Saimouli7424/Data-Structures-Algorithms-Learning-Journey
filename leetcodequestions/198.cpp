@@ -9,15 +9,44 @@ using namespace std;
 
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-        int prev1 = 0, prev2 = 0;
-        for (int num : nums) {
-            int temp = prev1;
-            prev1 = max(prev2 + num, prev1);
-            prev2 = temp;
+    int rob(vector<int>& nums)
+    {
+        int n=nums.size();
+        vector<int>dp(n,0);
+        dp[0]=nums[0];
+        for(int i=1;i<n;i++)
+        {
+            int pick = nums[i]+((i>1)?dp[i-2]:0);
+            int notpick = dp[i-1];
+            dp[i]=max(pick,notpick);
         }
-        return prev1;
+        return dp[n-1];
     }
+
+    /*
+    //using recursion
+    class Solution
+    {
+    public:
+        int rob(vector<int>& nums)
+        {
+            int n=nums.size();
+            vector<int>dp(n,-1);
+            return recursive(n-1,nums,dp);
+        }
+
+        int recursive(int index,vector<int>& nums,vector<int>& dp)
+        {
+            if(index==0)return nums[0];
+            if(index<0)return 0;
+            if(dp[index]!=-1)return dp[index];
+            int pick = nums[index]+ recursive(index-2,nums,dp);
+            int notpick = recursive(index-1,nums,dp);
+
+            return dp[index]=max(pick,notpick);
+        }
+    };
+    */
 };
 
 int main() {
