@@ -19,8 +19,8 @@ struct ListNode {
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode* beforeHead = new ListNode(0); // dummy node for < x
-        ListNode* afterHead = new ListNode(0);  // dummy node for >= x
+        ListNode* beforeHead = new ListNode(0); // dummy node for < x and pointed to a pointer beforeHead
+        ListNode* afterHead = new ListNode(0);  // dummy node for >= x and pointed to a pointer afterHead
         ListNode* before = beforeHead;
         ListNode* after = afterHead;
 
@@ -98,3 +98,22 @@ int main() {
 
     return 0;
 }
+
+/*
+🔧 Example Input:
+
+head = [1, 4, 3, 2, 5, 2], x = 3;
+🌀 Goal:
+Nodes < 3 go to the before list
+
+Nodes >= 3 go to the after list
+
+✅ After the while loop ends...
+We will have:
+🔹 beforehead points to:
+beforehead -> 0(dummy) -> 1 -> 2 -> 2 -> nullptr
+
+🔹 afterhead points to:
+afterhead  -> 0(dummy) -> 4 -> 3 -> 5 -> nullptr
+These are two separate linked lists, both starting with a dummy node (value 0), which was added for convenience.
+*/
