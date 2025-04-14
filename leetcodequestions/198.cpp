@@ -66,3 +66,41 @@ int main() {
 
     return 0;
 }
+
+/*
+🧪 Example:
+nums = [2, 1, 4, 9]
+Calling: rob(nums) → calls recursive(nums, 3)
+
+recursive(3)
+│
+├── pick = nums[3] + recursive(1)
+│        (9 + ?)
+│       └── recursive(1)
+│           ├── pick = nums[1] + recursive(-1)
+│           │        (1 + 0 = 1)
+│           └── notpick = recursive(0) = 2
+│           → max(1, 2) = 2
+│
+├── pick = 9 + 2 = 11
+│
+├── notpick = recursive(2)
+│           ├── pick = nums[2] + recursive(0)
+│           │        (4 + 2 = 6)
+│           └── notpick = recursive(1) = 2 (from memo)
+│           → max(6, 2) = 6
+│
+└── final = max(11, 6) = 11
+
+
+              recursive(3)
+              /          \
+        pick(1)        notpick(2)
+       /                  \
+recursive(1)          recursive(2)
+ /       \               /       \
+r(-1)   r(0)          r(0)      r(1)
+         |             |         |
+         0             2         2
+
+*/
