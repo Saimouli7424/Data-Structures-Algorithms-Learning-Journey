@@ -13,6 +13,8 @@ using namespace std;
 
 class Solution {
     public:
+
+        //mycode
         int minCost(int maxTime, vector<vector<int>>& edges, vector<int>& passingFees) 
         {
            int n = passingFees.size();
