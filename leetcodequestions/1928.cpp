@@ -1,6 +1,6 @@
 //Minimum Cost to Reach Destination in Time(Hard)
 //Using dijkstra algorithm to find the minimum cost to reach the destination in time
-//Time complexity: O(ElogV) where E is the number of edges and V is the number of vertices
+//Time complexity: O(E log V) where E is the number of edges and V is the number of vertices
 //Space complexity: O(V) where V is the number of vertices
 
 #include <iostream>
