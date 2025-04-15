@@ -12,48 +12,45 @@
 using namespace std;
 
 class Solution {
-public:
-    int minCost(int maxTime, vector<vector<int>>& edges, vector<int>& passingFees) 
-    {
-        int n = passingFees.size();
-        priority_queue<tuple<int,int,int>, vector<tuple<int,int,int>>, greater<tuple<int,int,int>>> pq;
-
-        vector<vector<pair<int,int>>> graph(n);
-
-        // Constructing the undirected graph
-        for (auto& e : edges) {
-            graph[e[0]].emplace_back(e[1], e[2]);
-            graph[e[1]].emplace_back(e[0], e[2]); // undirected graph
-        }
-
-        // Fee, node, time
-        pq.emplace(passingFees[0], 0, 0);
-
-        vector<vector<int>> dp(n, vector<int>(maxTime + 1, INT_MAX));
-        dp[0][0] = passingFees[0];
-
-        int mincost = INT_MAX;
-        while(!pq.empty())
+    public:
+        int minCost(int maxTime, vector<vector<int>>& edges, vector<int>& passingFees) 
         {
-            auto [fee, u, time] = pq.top();
-            pq.pop();
-            if (u == n - 1) return fee;  // Reached the destination
-
-            for (auto& [v, t] : graph[u])
+           int n = passingFees.size();
+           vector<vector<pair<int,int>>>g(n);
+           for(auto i:edges)
+           {
+            int node = i[0], neighbour=i[1], time=i[2];
+            g[node].emplace_back(neighbour,time);
+            g[neighbour].emplace_back(node,time);
+           }
+    
+            //mincost,node,time
+           priority_queue<tuple<int,int,int>,vector<tuple<int,int,int>>,greater<tuple<int,int,int>>>q;
+           vector<int>dist(n,INT_MAX);
+           dist[0]=0;
+           q.emplace(passingFees[0],0,0);
+    
+           while(!q.empty())
+           {
+            auto[fees,node,time]=q.top();
+            q.pop();
+            if(node==n-1 && time<=maxTime)return fees;
+            if(time>maxTime)continue;
+            for(auto i:g[node])
             {
-                int newTime = time + t;
-                if (newTime > maxTime) continue; // Skip if time exceeds maxTime
-
-                int newFee = fee + passingFees[v];
-                if (dp[v][newTime] > newFee) {
-                    dp[v][newTime] = newFee;
-                    pq.emplace(newFee, v, newTime);
+                int newnode=i.first;
+                int newfee=fees+passingFees[newnode];
+                int newtime = time+i.second;
+                if(dist[newnode]>newtime)
+                {
+                    dist[newnode]=newtime;
+                    q.emplace(newfee,newnode,newtime);
                 }
             }
+           }
+           return -1;
         }
-        return -1;  // If there's no valid path
-    }
-};
+    };
 
 int main() {
     Solution sol;
