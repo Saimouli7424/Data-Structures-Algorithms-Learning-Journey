@@ -9,6 +9,7 @@ using namespace std;
 
 class Solution {
 public:
+    //the below approach push 0 values row,col in queue
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) 
     {
         queue<pair<int,int>>q;
@@ -93,7 +94,7 @@ int main() {
 
 
 /*
-//the below code got TLE
+//the below code got TLE which we push into q only values of 1 row,col
 int rowsize=mat.size();
         int colsize=mat[0].size();
         vector<vector<int>> result(rowsize,vector<int>(colsize,0));
