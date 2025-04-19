@@ -24,9 +24,11 @@ void dfs(vector<vector<int>>& grid,int i,int j,vector<vector<char>>& result,vect
         {
             temp.emplace_back(d[k]);
             dfs(grid,nr,nc,result,temp);
-            temp.pop_back();
+            temp.pop_back();//temp is inside the for loop of directions that's why have to give pop inside or else the char will remain same until all the directions complete and will reach to bottom of code to pop
+            //that's why have to give inside the for loop of directions
         }
     }
+    //temp.pop_back(); // it's not correct because we have to pop before another dfs call that's why have to give inside
     grid[i][j]=1;
 }
 
