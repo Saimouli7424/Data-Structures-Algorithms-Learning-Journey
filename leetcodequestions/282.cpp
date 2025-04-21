@@ -31,6 +31,7 @@ public:
             // Skip leading zero numbers (e.g., "012" is invalid)
             if (i != pos && num[pos] == '0') break;
 
+            //starting pos,length to take from starting
             string str = num.substr(pos, i - pos + 1);
             long long val = stoll(str); // Convert the substring to a long long
 
