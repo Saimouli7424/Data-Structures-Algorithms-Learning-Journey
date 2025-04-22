@@ -10,7 +10,7 @@ void bellmanFord(int V, vector<tuple<int, int, int>> &edges, int src) {
     vector<int> dist(V, INF);
     dist[src] = 0;
 
-    // Relax edges V-1 times
+    // Relax edges V-1 times because src is already 0 so excluding that v-1times
     for (int i = 1; i < V; ++i) {
         for (auto &[u, v, w] : edges) {
             if (dist[u] != INF && dist[v] > dist[u] + w) {
