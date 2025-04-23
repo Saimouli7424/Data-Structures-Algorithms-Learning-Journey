@@ -85,3 +85,58 @@ int main() {
 
     return 0;
 }
+
+/*
+//using BFS
+class Solution {
+public:
+    unordered_map<string,vector<pair<string,double>>>graph;
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+        for(int i=0;i<equations.size();i++)
+        {
+            string u = equations[i][0];
+            string v = equations[i][1];
+            double val = values[i];
+            graph[u].push_back({v,val});
+            graph[v].push_back({u,1.0/val});
+        }
+
+        vector<double>result;
+        for(int i=0;i<queries.size();i++)
+        {
+            string src = queries[i][0];
+            string dest = queries[i][1];
+            double value = bfs(src,dest);
+            result.emplace_back(value);
+        }
+
+        return result;
+    }
+
+    double bfs(string src,string dest)
+    {
+        if (!graph.count(src) || !graph.count(dest)) return -1.0;
+        if(src==dest)return 1.0;
+        unordered_set<string>visited;
+        queue<pair<string,double>>q;
+        q.push({src,1.0});
+        while(!q.empty())
+        {
+            auto[u,wt] = q.front();
+            q.pop();
+
+            if(u==dest)return wt;
+
+            visited.insert(u);
+            for(auto [neighbour,weight]:graph[u])
+            {
+                if(!visited.count(neighbour))
+                {
+                    q.push({neighbour,wt*weight});
+                }
+            }
+        }
+        return -1.0;
+    }
+};
+*/
