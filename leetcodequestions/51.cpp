@@ -23,8 +23,8 @@ public:
     }
 
     void backtracking(int n, int row, vector<bool>& col, vector<bool>& diag1,
-                      vector<bool>& diag2, vector<string>& grid,
-                      vector<vector<string>>& result)
+    vector<bool>& diag2, vector<string>& grid,
+    vector<vector<string>>& result)
     {
         if (row == n) {
             result.emplace_back(grid);

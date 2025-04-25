@@ -124,4 +124,78 @@ class Solution {
     
         return 0;
     }
+
+/*
+//my code using nested for loops and backtracking
+//Time complexity: O(9^n) where n is the number of empty cells in the board
+class Solution {
+public:
+    vector<vector<bool>>rows=vector<vector<bool>>(9,vector<bool>(9,false));
+    vector<vector<bool>>cols=vector<vector<bool>>(9,vector<bool>(9,false));
+    vector<vector<bool>>grid=vector<vector<bool>>(9,vector<bool>(9,false));
+    void solveSudoku(vector<vector<char>>& board)
+    {
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    int val = board[i][j]-'1';
+                    rows[i][val]=cols[j][val]=true;
+                    int gridindex= (i/3)*3+(j/3);
+                    grid[gridindex][val]=true;
+                }
+            }
+        }
+
+        backtracking(board,0,0);
+    }
+
+    bool found = false;
+    void backtracking(vector<vector<char>>& board,int row,int col)
+    {
+        if(row==9)
+        {
+            found=true;
+            return;
+        }
+
+        if(col==9)
+        {
+            backtracking(board,row+1,0);
+            return;
+        }
+
+        if(found)return;
+
+        for(int i=row;i<9;i++)
+        {
+            //the condition given because once row completed the next row has to be start from 0 but if i give j=col it starts from the col value if incase the previous loop starts j not start from 0
+            //example recursive call row=4,col=6 after col=9 than new row starts row=7 but col=6 because we assigned j=col to avoid this we written conditon
+            for(int j=((i!=row)?0:col);j<9;j++)
+            {
+                if(board[i][j]=='.')
+                {
+                    int gridindex = (i/3)*3+(j/3);
+                    for(int val=0;val<9;val++)
+                    {
+                        if(!rows[i][val] && !cols[j][val] && !grid[gridindex][val])
+                        {
+                            board[i][j]= '1'+val;
+                            rows[i][val]=cols[j][val]=grid[gridindex][val]=true;
+                            backtracking(board,i,j+1);
+                            if(found)return;
+                            board[i][j]='.';
+                            rows[i][val]=cols[j][val]=grid[gridindex][val]=false;
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+        found=true;  
+    }
+};
+*/
     
