@@ -1,6 +1,6 @@
 // Pacific Atlantic Water Flow(Medium)
-//using BFS
-//time comomplexity: O(m*n)
+//using BFS and can do either DFS
+//time complexity: O(m*n)
 #include <iostream>
 #include <vector>
 #include <queue>
