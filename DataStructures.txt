@@ -82,3 +82,9 @@ linear time -O(n)            ex:-linear search
 quasilinear time- O(n log n) ex:- merge sort, heap sort, quick sort
 quadratic time- O(n^2)       ex:- Bubble sort, insertion sort 
 exponential time:- O(2^n)    ex:- in recursion tower of hanoi(TOH)
+
+
+-----------------------------------------------------------------------------------------
+INPLACE ALGORITHM:-
+(LEETCODE 73)
+In computer science, an in-place algorithm is an algorithm that operates directly on the input data structure without requiring extra space proportional to the input size. In other words, it modifies the input in place, without creating a separate copy of the data structure. An algorithm which is not in-place is sometimes called not-in-place or out-of-place.
