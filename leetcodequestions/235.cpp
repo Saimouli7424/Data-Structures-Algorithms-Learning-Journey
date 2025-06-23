@@ -1,6 +1,6 @@
 //Lowest Common Ancestor of a Binary Search Tree(Medium)
 //using LOWEST COMMON ANCESTOR OF A BINARY SEARCH TREE
-//time complexity: O(h), where h is the height of the tree
+//time complexity: O(log n), where h is the height of the tree
 //space complexity: O(1)
 #include <iostream>
 using namespace std;
