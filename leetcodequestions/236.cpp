@@ -15,6 +15,24 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+//optimal approach using LCA
+//time complexity is O(n) and space complexity is O(N) which is stack
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root==nullptr || root==p || root==q)return root;
+
+        TreeNode* left = lowestCommonAncestor(root->left,p,q);//it will return the first node which is either p or q or null which comes first
+        TreeNode* right = lowestCommonAncestor(root->right,p,q);//it will return the first node which is either p or q or null which comes first
+
+        if(left==NULL)return right;
+        if(right==NULL)return left;
+        else return root;//if both left and right are not null, then root is the LCA
+    }
+};
+
+/*
+//my naive approach
 class Solution {
 public:
     bool dfs(TreeNode* root, TreeNode* p, vector<TreeNode*>& path) {
@@ -45,6 +63,7 @@ public:
         return path1[i - 1];
     }
 };
+*/
 
 // Utility to build nodes manually for testing
 TreeNode* buildTestTree() {
