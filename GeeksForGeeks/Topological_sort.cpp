@@ -77,3 +77,46 @@ int main() {
 
     return 0;
 }
+
+/*
+//Using Kahn's Algorithm
+
+class Solution {
+  public:
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+        // code here
+        vector<vector<int>>adjlist(V);
+        for(int i=0;i<edges.size();i++){
+            int u=edges[i][0], v=edges[i][1];
+            adjlist[u].push_back(v);
+        }
+        
+        vector<int>Indegree(V);
+        for(int i=0;i<V;i++){
+            for(auto it:adjlist[i]){
+                Indegree[it]++;
+            }
+        }
+        
+        queue<int> q;
+        for(int i=0;i<V;i++){
+            if(Indegree[i]==0)q.push(i);
+        }
+        
+        vector<int> result;
+        while(!q.empty())
+        {
+            int node=q.front();
+            q.pop();
+            result.push_back(node);
+            for(auto i:adjlist[node]){
+                Indegree[i]--;
+                if(Indegree[i]==0)q.push(i);
+            }
+        }
+        
+        return result;
+    }
+        
+};
+*/

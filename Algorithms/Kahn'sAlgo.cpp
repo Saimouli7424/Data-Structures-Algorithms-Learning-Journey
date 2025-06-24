@@ -1,6 +1,8 @@
 //Kahn's Algorithm for Topological Sorting
 //using BFS and Indegree technique
-
+//there will be alway a one Node has Indegree 0
+//time complexity: O(V+E)
+//space complexity: O(N)
 #include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
