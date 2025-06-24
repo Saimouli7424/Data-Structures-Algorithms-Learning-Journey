@@ -19,7 +19,8 @@ public:
         for (int right = 0; right < s.size(); ++right) {
             mp[s[right]]++;
             maxFreq = max(maxFreq, mp[s[right]]);
-
+            //This line updates the maxFreq — which keeps track of the most frequent character count in the current sliding window.
+            //by finding the maximum frequency of any character in the current window and finding the difference that is the number of characters that need to be replaced.
             while ((right - left + 1) - maxFreq > k) {
                 mp[s[left]]--;
                 left++;
