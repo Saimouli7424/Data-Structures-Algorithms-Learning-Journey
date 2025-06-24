@@ -32,6 +32,13 @@ public:
                 if (hasCycle) return;
             }
             visited[node] = 2; // mark as visited
+
+            /*
+            visited[node]	Meaning	Why it matters
+            0	Not visited yet	Start DFS from here
+            1	Currently visiting (on stack)	🔁 If you revisit this → cycle
+            2	Fully processed	✅ Skip — already safe and done
+            */
         };
 
         for (int i = 0; i < numCourses; i++) {
