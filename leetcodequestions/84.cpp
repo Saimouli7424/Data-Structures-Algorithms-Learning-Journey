@@ -1,4 +1,4 @@
-//Largest Rectangle in Histogram(Medium)
+//Largest Rectangle in Histogram(Hard)
 //using Monotonic stack
 //time complexity: O(n)
 //space complexity: O(n)
