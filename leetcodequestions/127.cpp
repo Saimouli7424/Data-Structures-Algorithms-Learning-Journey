@@ -1,4 +1,5 @@
 //Word Ladder(Hard)
+#include <unordered_set>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -9,7 +10,40 @@ using namespace std;
 
 class Solution {
 public:
+    //optimal using unordered_set and queue which done operations in O(1) time
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        /*Time Complexity:- O(N*L*26)=O(N*L);
+        / Space Complexity:- unordered_set stores N words: O(N)
+                             queue may grow up to N: O(N)*/
+        queue<pair<string,int>>q;
+        q.push({beginWord,1});
 
+        unordered_set<string> st(wordList.begin(),wordList.end());
+        st.erase(beginWord);
+
+        while(!q.empty()){
+            string word=q.front().first;
+            int len=q.front().second;
+            q.pop();
+            if(word==endWord)return len;
+
+            for(int i=0;i<word.size();i++){
+                char original=word[i];
+                for(char ch='a';ch<='z';ch++){
+                    word[i]=ch;
+                    if(st.find(word)!=st.end()){
+                        q.push({word,len+1});
+                        st.erase(word);
+                    }
+                }
+                word[i]=original;
+            }
+        }
+        return 0;
+    }
+    /*
+    //My approach time complexity is O(n^2*m) where n is the number of words and m is the length of each word.
+    //Space complexity is O(n) for the visited array.
     bool Ladder(string prev,string curr){
         int diff=0;
         for(int i=0;i<prev.length();i++){
@@ -46,7 +80,7 @@ public:
             }
         }
         return 0;
-    }
+    }*/
 };
 
 int main() {
