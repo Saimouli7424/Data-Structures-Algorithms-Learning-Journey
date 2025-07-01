@@ -16,6 +16,46 @@ struct TreeNode {
     TreeNode(int x, TreeNode *l, TreeNode *r) : val(x), left(l), right(r) {}
 };
 
+
+//optimal code will find the target node once we find that we will find the depth of the tree and then we will use dfs to find the max depth of the tree
+//than while returning back to parent node we will find the opposite subtree depth and add it to the current depth and update the ans
+//in this way we will find the max time taken to infect the whole tree
+class Solution {
+public:
+    int ans = 0;
+    int subtree = 0;
+    int depth(TreeNode* root){
+        if(root == NULL) return 0;
+        return max(depth(root->left),depth(root->right))+1;
+    }
+    int dfs(TreeNode* root, int start){
+        if(root == NULL) return -1;
+        if(root->val == start) {
+            ans = max(ans,depth(root)-1);
+            return 0;
+        }
+        int left = dfs(root->left, start);
+        if (left != -1) {
+            ans = max(ans, left + 1 + depth(root->right));
+            return left + 1;
+        }
+
+        int right = dfs(root->right, start);
+        if (right != -1) {
+            ans = max(ans, right + 1 + depth(root->left));
+            return right + 1;
+        }
+
+        return -1;
+    }
+    int amountOfTime(TreeNode* root, int start) {
+        dfs(root,start);
+        return ans;
+    }
+};
+
+/*
+// Original code using unordered_map and set time complexity and space complexity is high
 class Solution {
 private:
     unordered_map<TreeNode*, TreeNode*> mp;
@@ -65,7 +105,7 @@ public:
         traversal(root->left, root, temp, target);
         traversal(root->right, root, temp, target);
     }
-};
+};*/
 
 // ------------ Test Case Helpers ------------
 
