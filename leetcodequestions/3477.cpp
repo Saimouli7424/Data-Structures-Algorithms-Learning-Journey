@@ -4,30 +4,26 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int totalFruits(vector<int>& fruits) {
+
+int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
     int n = fruits.size();
-    if (n == 0) return 0;
-
-    int maxFruits = 0;
-    int left = 0, right = 0;
-    int fruitCount[30001] = {0}; // Assuming fruit types are in the range [0, 30000]
-
-    while (right < n) {
-        fruitCount[fruits[right]]++;
-
-        while (fruitCount[fruits[right]] > 2) {
-            fruitCount[fruits[left]]--;
-            left++;
+    vector<bool> used(n, false);
+    int unplaced = n;
+    for (int x : fruits) {
+        for (int i = 0; i < n; ++i) {
+            if (baskets[i] >= x && !used[i]) {
+                used[i] = true;
+                --unplaced;
+                break;
+            }
         }
-
-        maxFruits = max(maxFruits, right - left + 1);
-        right++;
     }
-
-    return maxFruits;
+    return unplaced;
 }
+
 int main() {
-    vector<int> fruits = {1, 2, 1, 2, 3, 4, 5, 1, 2};
-    cout << "Maximum number of fruits in two baskets: " << totalFruits(fruits) << endl;
+    vector<int> fruits = {4,2,5};
+    vector<int> baskets = {3,5,2};
+    cout << "Maximum number of fruits in two baskets: " << numOfUnplacedFruits(fruits,baskets) << endl;
     return 0;
 }
