@@ -17,7 +17,7 @@ public:
             int node = pq.top().second;
             int dis = pq.top().first;
             pq.pop();
-
+            if (dist[node]<dis)continue; // If the distance is not optimal, skip
             for (auto it : adj[node]) {
                 int adjnode = it.first;
                 int adjdist = it.second;
